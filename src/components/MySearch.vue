@@ -426,13 +426,13 @@ h1::after {
 
 #img {
   z-index: 0;
-  top: -20px;
+  top: -60px;
   position: absolute;
   background-image: url("./5d58e79678af42d5e6f70.png");
   background-repeat: repeat;
   background-size: auto;
   width: 100%;
-  height: 300px;
+  height: 250px;
 }
 
 .biaodan1 {

@@ -1,28 +1,78 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import MyMusic from "./components/MyMusic2.vue";
+import { ref, onBeforeMount } from "vue";
 import { RouterLink, RouterView } from "vue-router";
+import { useRouter } from "vue-router";
 const a1 = ref<HTMLElement | null>(null);
 const a2 = ref<HTMLElement | null>(null);
 const blue1 = ref<HTMLElement | null>(null);
 const music = ref<HTMLElement | null>(null);
 const search = ref<HTMLElement | null>(null);
+const lo = ref<HTMLElement | null>(null);
+const router = useRouter();
 let axian = "transparent";
 let a2xian = "rgba(133, 130, 130, 0.397)";
+onBeforeMount(() => {
+  // 模拟接口/图片加载
+  setTimeout(() => {
+    lo.value.className = "new";
+  }, 2000);
+});
 document.documentElement.style.setProperty("--a2xian", a2xian);
 function handledown() {
+  // 初始化类名为“loading-container”
+  lo.value.className = "loading-container";
+
+  router.beforeEach((to, from, next) => {
+    // 延迟1秒后才继续导航
+    setTimeout(() => {
+      next(); // 允许路由继续执行
+    }, 2000); // 等待1秒
+  });
+
+  router.afterEach(() => {
+    // 等待路由渲染完成后，再修改类名
+    setTimeout(() => {
+      if (lo.value) {
+        lo.value.className = "new";
+      }
+    }, 200); // 确保视觉效果
+  });
+
   blue1.value.className = "newclass";
   search.value.className = "search1";
   music.value.className = "music";
-  if (axian == "transparent") {
+
+  if (axian === "transparent") {
     axian = "rgba(133, 130, 130, 0.397)";
     document.documentElement.style.setProperty("--axian", axian);
   }
-  if (a2xian == "rgba(133, 130, 130, 0.397)") {
+  if (a2xian === "rgba(133, 130, 130, 0.397)") {
     a2xian = "transparent";
     document.documentElement.style.setProperty("--a2xian", a2xian);
   }
 }
+
 function handleup() {
+  // 初始化类名为“loading-container”
+  lo.value.className = "loading-container";
+
+  router.beforeEach((to, from, next) => {
+    // 延迟1秒后才继续导航
+    setTimeout(() => {
+      next(); // 允许路由继续执行
+    }, 2000); // 等待1秒
+  });
+
+  router.afterEach(() => {
+    // 等待路由渲染完成后，再修改类名
+    setTimeout(() => {
+      if (lo.value) {
+        lo.value.className = "new";
+      }
+    }, 200); // 确保视觉效果
+  });
+
   blue1.value.className = "blue";
   search.value.className = "search";
   music.value.className = "music1";
@@ -38,6 +88,9 @@ function handleup() {
 </script>
 
 <template>
+  <div class="loading-container" ref="lo">
+    <MyMusic />
+  </div>
   <div id="back">
     <div class="tianmen15-icon">
       <img
@@ -258,5 +311,32 @@ body {
 .luyou1 {
   height: 0%;
   width: 99.95999%;
+}
+.loading-container {
+  position: fixed;
+  inset: 0;
+  background: #000; /* 你的背景色或图片 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+
+  transform: translateY(0);
+  transition: all 1s ease-in-out;
+}
+
+/* 滑出动画 */
+
+.new {
+  position: fixed;
+  inset: 0;
+  background: #ffffff; /* 你的背景色或图片 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 2s ease;
 }
 </style>
