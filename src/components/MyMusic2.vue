@@ -5,7 +5,7 @@
       <motion.div
         v-motion
         :drag="true"
-        :dragConstraints="bounds"
+        :dragConstraints="bounds!"
         :dragElastic="1"
         :dragMomentum="true"
         class="zai"

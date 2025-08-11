@@ -13,35 +13,31 @@ const router = useRouter();
 let axian = "transparent";
 let a2xian = "rgba(133, 130, 130, 0.397)";
 onBeforeMount(() => {
-  // 模拟接口/图片加载
   setTimeout(() => {
-    lo.value.className = "new";
+    lo.value!.className = "new";
   }, 2000);
 });
 document.documentElement.style.setProperty("--a2xian", a2xian);
 function handledown() {
-  // 初始化类名为“loading-container”
-  lo.value.className = "loading-container";
+  lo.value!.className = "loading-container";
 
   router.beforeEach((to, from, next) => {
-    // 延迟1秒后才继续导航
     setTimeout(() => {
-      next(); // 允许路由继续执行
-    }, 2000); // 等待1秒
+      next();
+    }, 2000);
   });
 
   router.afterEach(() => {
-    // 等待路由渲染完成后，再修改类名
     setTimeout(() => {
       if (lo.value) {
         lo.value.className = "new";
       }
-    }, 200); // 确保视觉效果
+    }, 0);
   });
 
-  blue1.value.className = "newclass";
-  search.value.className = "search1";
-  music.value.className = "music";
+  blue1.value!.className = "newclass";
+  search.value!.className = "search1";
+  music.value!.className = "music";
 
   if (axian === "transparent") {
     axian = "rgba(133, 130, 130, 0.397)";
@@ -54,28 +50,25 @@ function handledown() {
 }
 
 function handleup() {
-  // 初始化类名为“loading-container”
-  lo.value.className = "loading-container";
+  lo.value!.className = "loading-container";
 
   router.beforeEach((to, from, next) => {
-    // 延迟1秒后才继续导航
     setTimeout(() => {
-      next(); // 允许路由继续执行
-    }, 2000); // 等待1秒
+      next();
+    }, 2000);
   });
 
   router.afterEach(() => {
-    // 等待路由渲染完成后，再修改类名
     setTimeout(() => {
       if (lo.value) {
         lo.value.className = "new";
       }
-    }, 200); // 确保视觉效果
+    }, 200);
   });
 
-  blue1.value.className = "blue";
-  search.value.className = "search";
-  music.value.className = "music1";
+  blue1.value!.className = "blue";
+  search.value!.className = "search";
+  music.value!.className = "music1";
   if (axian == "rgba(133, 130, 130, 0.397)") {
     axian = "transparent";
     document.documentElement.style.setProperty("--axian", axian);

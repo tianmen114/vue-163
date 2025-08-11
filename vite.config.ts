@@ -7,6 +7,7 @@ import vuename from 'vite-plugin-vue-setup-extend'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/vue-music/', // 关键：GitHub Pages 子路径
   plugins: [
     vue(),
     vuename()
